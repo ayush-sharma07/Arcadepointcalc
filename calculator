@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arcade Points Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f9f9f9;
+    padding: 20px;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #007bff;
+  }
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  input[type=number] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #0056b3;
+  }
+  .result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eef5ff;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+  <h1>Arcade Points Calculator</h1>
+  <div class="container">
+    <label>Skill Badges Completed</label>
+    <input type="number" id="badges" value="0" />
+
+    <label>Quests Completed</label>
+    <input type="number" id="quests" value="0" />
+
+    <label>Trivia Badges</label>
+    <input type="number" id="trivia" value="0" />
+
+    <label>Facilitator Bonus Points</label>
+    <input type="number" id="bonus" value="0" />
+
+    <button onclick="calculatePoints()">Calculate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+<script>
+function calculatePoints() {
+  let badges = parseInt(document.getElementById('badges').value) || 0;
+  let quests = parseInt(document.getElementById('quests').value) || 0;
+  let trivia = parseInt(document.getElementById('trivia').value) || 0;
+  let bonus = parseInt(document.getElementById('bonus').value) || 0;
+
+  // Points logic (example: Skill badge = 1 pt, Quest = 6 pts, Trivia = 1 pt)
+  let total = (badges * 1) + (quests * 6) + (trivia * 1) + bonus;
+
+  let tier = "";
+  if (total >= 85) tier = "Arcade Legend";
+  else if (total >= 75) tier = "Arcade Champion";
+  else if (total >= 65) tier = "Arcade Ranger";
+  else if (total >= 40) tier = "Arcade Trooper";
+  else if (total >= 20) tier = "Arcade Novice";
+  else tier = "Below Novice";
+
+  document.getElementById('result').innerHTML = `Total Points: <b>${total}</b><br>Tier: <b>${tier}</b>`;
+}
+</script>
+</body>
+</html>
